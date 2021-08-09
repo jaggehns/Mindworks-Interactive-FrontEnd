@@ -11,6 +11,8 @@ import {
   Box,
   Avatar,
 } from "@material-ui/core";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -61,8 +63,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Posts({ posts }) {
+  const history = useHistory();
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
+
+  function goBack() {
+    history.push("/");
+  }
 
   return (
     <Container maxWidth="lg" className={classes.postsContainer}>
@@ -126,6 +133,12 @@ function Posts({ posts }) {
                           {post.email}
                         </Typography>
                       </Box>
+                    </Box>
+                    <Box>
+                      <ArrowBackIcon
+                        className={classes.pointer}
+                        onClick={goBack}
+                      />
                     </Box>
                   </CardActions>
                 </Card>
